@@ -11,13 +11,13 @@ class ListingController extends Controller
     {
         return view('listings.index', [
             'heading' => 'Latest Listing!',
-            'listings' => Listing::all()
+            'listings' => Listing::latest()->filter(request(['tag', 'search']))->get()
         ]);
     }
 
     public function show(Listing $listing)
     {
-        return view('listing.show', [
+        return view('listings.show', [
             'listing' => $listing
         ]);
     }
